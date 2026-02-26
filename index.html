@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Foggia • Tour</title>
+  <link rel="manifest" href="./app.webmanifest">
+  <meta name="theme-color" content="#961B2B">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+<body data-theme="light">
+  <header class="appHeader">
+    <div class="left">
+      <button class="iconBtn" id="btnMenu" aria-label="Apri indice">☰</button>
+      <div class="title">Foggia • Tour</div>
+    </div>
+    <div class="right">
+      <select class="themeSelect" id="themeSelect" aria-label="Tema">
+        <option value="light">Chiaro</option>
+        <option value="dark">Scuro</option>
+        <option value="sepia">Seppia</option>
+        <option value="contrast">Alto contrasto</option>
+      </select>
+      <button class="iconBtn" id="btnChat" aria-label="Chatbot">💬</button>
+    </div>
+  </header>
+
+  <!-- Drawer -->
+  <div class="drawerBackdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer" aria-label="Indice tappe">
+    <div class="closeRow">
+      <h2>Indice tappe</h2>
+      <button class="iconBtn" id="btnCloseDrawer" aria-label="Chiudi">✕</button>
+    </div>
+    <div id="drawerList"></div>
+    <p style="margin-top:14px; color:rgba(255,255,255,.75); font-size:13px;">
+      Suggerimento: aggiungeremo qui tutte le tappe del tour.
+    </p>
+  </aside>
+
+  <main class="home">
+    <div class="bg" style="background-image:url('./assets/Copertina.PNG')"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <h1>Foggia<br/>da attraversare</h1>
+      <p>
+        Una demo minimale: <b>Home</b> + <b>1 tappa</b> (Campi Diomedei).  
+        Il menu a comparsa (☰) contiene l’indice generale.
+      </p>
+      <div class="ctaRow">
+        <a class="btn" href="campi.html">▶ Entra: Campi Diomedei</a>
+        <button class="btn" id="btnOpenIndex">☰ Apri indice</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="./js/app.js"></script>
+  <script>
+    renderDrawer();
+    initTheme(document.querySelector("#themeSelect"));
+    initPWA();
+
+    document.querySelector("#btnMenu")?.addEventListener("click", openDrawer);
+    document.querySelector("#btnOpenIndex")?.addEventListener("click", openDrawer);
+    document.querySelector("#drawerBackdrop")?.addEventListener("click", closeDrawer);
+    document.querySelector("#btnCloseDrawer")?.addEventListener("click", closeDrawer);
+
+    document.querySelector("#btnChat")?.addEventListener("click", ()=> window.open(APP.CHATBOT_URL, "_blank"));
+  </script>
+</body>
+</html>

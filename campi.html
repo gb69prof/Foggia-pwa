@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Campi Diomedei • Foggia Tour</title>
+  <link rel="manifest" href="./app.webmanifest">
+  <meta name="theme-color" content="#961B2B">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+<body data-theme="light">
+  <header class="appHeader">
+    <div class="left">
+      <a class="iconBtn" href="index.html" aria-label="Home">⌂</a>
+      <div class="title">Campi Diomedei</div>
+    </div>
+
+    <div class="right">
+      <a class="iconBtn" id="openExternal" href="#" target="_blank" style="display:none" aria-label="Apri esterno">↗</a>
+      <select class="themeSelect" id="themeSelect" aria-label="Tema">
+        <option value="light">Chiaro</option>
+        <option value="dark">Scuro</option>
+        <option value="sepia">Seppia</option>
+        <option value="contrast">Alto contrasto</option>
+      </select>
+      <button class="iconBtn" id="btnChat" aria-label="Chatbot">💬</button>
+      <button class="iconBtn" id="btnMenu" aria-label="Indice">☰</button>
+    </div>
+  </header>
+
+  <!-- Drawer -->
+  <div class="drawerBackdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer" aria-label="Indice tappe">
+    <div class="closeRow">
+      <h2>Indice tappe</h2>
+      <button class="iconBtn" id="btnCloseDrawer" aria-label="Chiudi">✕</button>
+    </div>
+    <div id="drawerList"></div>
+  </aside>
+
+  <main>
+    <div class="pageWrap">
+      <div class="grid">
+        <!-- LEFT: media + tool icons -->
+        <section class="card mediaCard">
+          <div class="mediaStage" id="mediaStage">
+            <div class="overlayTag" id="stageTag">VIDEO</div>
+          </div>
+
+          <div class="toolRow">
+            <div class="tools">
+              <button class="toolChip active" data-tool="video"><span class="emoji">🎬</span>Video</button>
+              <button class="toolChip" data-tool="map"><span class="emoji">🗺️</span>Map</button>
+              <button class="toolChip" data-tool="immagini"><span class="emoji">🖼️</span>Immagini</button>
+              <button class="toolChip" data-tool="3d"><span class="emoji">🧩</span>3D</button>
+            </div>
+          </div>
+
+          <div id="galleryWrap" style="display:none; border-top:1px solid var(--border);">
+            <div class="gallery" id="gallery"></div>
+          </div>
+        </section>
+
+        <!-- RIGHT: text -->
+        <aside class="card textCard">
+          <h3>Testo (Diomedei.txt)</h3>
+          <div class="textContent" id="textContent"><span class="muted">Caricamento…</span></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Image modal -->
+  <div class="modalBackdrop" id="imgModal">
+    <div class="modalBox">
+      <button class="modalClose" id="modalClose" aria-label="Chiudi">✕</button>
+      <img id="modalImg" alt="Immagine">
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+  <script src="./js/campi.js"></script>
+
+  <script>
+    // UI boot
+    renderDrawer();
+    initTheme(document.querySelector("#themeSelect"));
+    document.querySelector("#btnMenu")?.addEventListener("click", openDrawer);
+    document.querySelector("#drawerBackdrop")?.addEventListener("click", closeDrawer);
+    document.querySelector("#btnCloseDrawer")?.addEventListener("click", closeDrawer);
+  </script>
+
+</body>
+</html>
